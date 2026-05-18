@@ -1,0 +1,29 @@
+@startuml
+title Protopipe Scaffold Context
+
+actor Developer
+actor "CI Runner" as CI
+
+rectangle "Project Scaffold" {
+  rectangle "Compose Profiles" as Compose
+  rectangle "Rust Example Service" as Service
+  rectangle "WireMock" as WireMock
+  rectangle "BDD Tests" as BDD
+  rectangle "k6 Load Tests" as K6
+  rectangle "MkDocs Documentation" as Docs
+}
+
+Developer --> Compose
+CI --> Compose
+Compose --> Service
+Compose --> WireMock
+Compose --> BDD
+Compose --> K6
+Compose --> Docs
+BDD --> Service
+BDD --> WireMock
+K6 --> Service
+Service --> WireMock
+
+@enduml
+
